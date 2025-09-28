@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="个人作品集 - 展示我的项目和技能">
+    <meta name="keywords" content="作品集, 个人网站, 项目展示, 技能">
+    <title>我的个人作品集</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-container">
+                <div class="logo">
+                    <h1>我的作品集</h1>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="#home" class="nav-link">首页</a></li>
+                    <li><a href="#about" class="nav-link">关于我</a></li>
+                    <li><a href="#projects" class="nav-link">项目</a></li>
+                    <li><a href="#skills" class="nav-link">技能</a></li>
+                    <li><a href="#contact" class="nav-link">联系</a></li>
+                </ul>
+                <div class="language-selector">
+                     <button class="lang-btn active" data-lang="zh">中文</button>
+                     <button class="lang-btn" data-lang="en">EN</button>
+                 </div>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">欢迎来到我的作品集</h1>
+                <p class="hero-subtitle">我是一名开发者，热爱创造优秀的数字体验</p>
+                <a href="#projects" class="cta-button">查看我的作品</a>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="container">
+                <h2 class="section-title">关于我</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>Python Developer</h3>
+                        <p>我是一名专注于Python开发的软件工程师，擅长消息中间件、实时数据处理、高可用架构设计。拥有丰富的后端开发经验，致力于构建高性能、可扩展的系统架构。</p>
+                        <p>在技术之外，我喜欢Rust编程语言，热爱动漫文化，特别是《幸运星》、《孤独摇滚》、《摇曳露营》等作品。这些爱好让我保持创造力和对生活的热情。</p>
+                        
+                        <h3>个人成就</h3>
+                        <div class="achievements">
+                            <div class="achievement-item">🏆 清华大学优秀毕业生</div>
+                            <div class="achievement-item">🎯 微软MVP</div>
+                            <div class="achievement-item">🚀 华为开发者认证</div>
+                        </div>
+                    </div>
+                    <div class="about-image">
+                        <img src="https://kirineko.github.io/hita.png" alt="个人照片" class="profile-img">
+                    </div>
+                </div>
+                
+                <!-- 专业经历时间线 -->
+                <div class="timeline-section">
+                    <h3>专业经历</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2010-2014</div>
+                            <div class="timeline-content">
+                                <h4>清华大学</h4>
+                                <p>计算机科学与技术专业，学士学位</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2014-2016</div>
+                            <div class="timeline-content">
+                                <h4>斯坦福大学</h4>
+                                <p>计算机科学专业，硕士学位</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2017-2020</div>
+                            <div class="timeline-content">
+                                <h4>Google</h4>
+                                <p>软件工程师，负责分布式系统开发</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2021-2023</div>
+                            <div class="timeline-content">
+                                <h4>OpenAI</h4>
+                                <p>软件工程师，参与AI基础设施构建</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="projects">
+            <div class="container">
+                <h2 class="section-title">我的项目</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=250&fit=crop" alt="项目1">
+                    </div>
+                        <div class="project-info">
+                            <h3>项目标题 1</h3>
+                            <p>这是一个创新的Web应用，使用了最新的前端技术栈。</p>
+                            <div class="project-links">
+                                <a href="#" class="project-link">查看演示</a>
+                                <a href="#" class="project-link">源代码</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop" alt="项目2">
+                    </div>
+                        <div class="project-info">
+                            <h3>项目标题 2</h3>
+                            <p>响应式设计的企业网站，注重用户体验和性能优化。</p>
+                            <div class="project-links">
+                                <a href="#" class="project-link">查看演示</a>
+                                <a href="#" class="project-link">源代码</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-image">
+                        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=250&fit=crop" alt="项目3">
+                    </div>
+                        <div class="project-info">
+                            <h3>项目标题 3</h3>
+                            <p>移动端应用开发，提供流畅的用户交互体验。</p>
+                            <div class="project-links">
+                                <a href="#" class="project-link">查看演示</a>
+                                <a href="#" class="project-link">源代码</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="skills">
+            <div class="container">
+                <h2 class="section-title">技能</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>核心技术栈</h3>
+                        <div class="skill-tags">
+                            <span class="skill-tag expert">Python</span>
+                            <span class="skill-tag expert">MongoDB</span>
+                            <span class="skill-tag proficient">Next.js</span>
+                            <span class="skill-tag proficient">ElasticSearch</span>
+                            <span class="skill-tag familiar">Rust</span>
+                        </div>
+                        <ul class="skill-list">
+                            <li>消息中间件架构设计</li>
+                            <li>实时数据处理系统</li>
+                            <li>高可用性系统架构</li>
+                            <li>分布式系统开发</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>后端技术</h3>
+                        <ul class="skill-list">
+                            <li>Python异步编程</li>
+                            <li>微服务架构</li>
+                            <li>数据库优化</li>
+                            <li>API设计与开发</li>
+                            <li>容器化部署</li>
+                        </ul>
+                    </div>
+                    <div class="skill-category">
+                        <h3>工具与框架</h3>
+                        <ul class="skill-list">
+                            <li>Django / FastAPI</li>
+                            <li>Redis / RabbitMQ</li>
+                            <li>Docker / Kubernetes</li>
+                            <li>AWS / GCP</li>
+                            <li>Git / CI/CD</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2 class="section-title">联系我</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <p>如果您对我的工作感兴趣，或者有项目合作的想法，欢迎与我联系！我专注于Python开发和系统架构设计，期待与您交流技术心得。</p>
+                        
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <strong>📧 邮箱：</strong>
+                                <span>kirineko@qq.com</span>
+                            </div>
+                            <div class="contact-item">
+                                <strong>🌐 个人网页：</strong>
+                                <a href="https://kirineko.github.io" target="_blank" class="contact-link">https://kirineko.github.io</a>
+                            </div>
+                            <div class="contact-item">
+                                <strong>📍 位置：</strong>
+                                <span>中国，广州</span>
+                            </div>
+                        </div>
+
+                        <div class="social-media">
+                            <h4>社交媒体</h4>
+                            <div class="social-links-horizontal">
+                                <a href="https://kirineko.github.io" target="_blank" class="social-btn">
+                                    <span class="social-icon">🌐</span>
+                                    个人博客
+                                </a>
+                                <a href="mailto:kirineko@qq.com" class="social-btn">
+                                    <span class="social-icon">📧</span>
+                                    邮箱联系
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form-container">
+                        <h3>快速联系</h3>
+                        <form class="contact-form">
+                            <div class="form-group">
+                                <label for="name">姓名：</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">邮箱：</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">留言：</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="submit-button">发送消息</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 我的个人作品集. 保留所有权利.</p>
+            <div class="social-links">
+                <a href="#" class="social-link">GitHub</a>
+                <a href="#" class="social-link">LinkedIn</a>
+                <a href="#" class="social-link">微博</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="language.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
