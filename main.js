@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeFormHandling();
     initializeAnimations();
     initializeLanguageSwitcher();
+    initializeInteractiveEffects();
+    initializeParticleSystem();
 });
 
 // 导航功能
@@ -303,8 +305,119 @@ function initializeLanguageSwitcher() {
             if (typeof switchLanguage === 'function') {
                 switchLanguage(lang);
             }
+            
+            // 添加波纹效果
+            createRipple(this, event);
         });
     });
+}
+
+// 交互效果初始化
+function initializeInteractiveEffects() {
+    // 鼠标跟随效果
+    const cursorFollower = document.querySelector('.cursor-follower');
+    
+    if (cursorFollower) {
+        document.addEventListener('mousemove', function(e) {
+            cursorFollower.style.left = e.clientX + 'px';
+            cursorFollower.style.top = e.clientY + 'px';
+        });
+    }
+    
+    // 添加波纹效果到所有按钮
+    const buttons = document.querySelectorAll('.cta-button, .project-link, .social-btn, .submit-btn');
+    buttons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            createRipple(this, e);
+        });
+    });
+    
+    // 添加悬停效果到项目卡片
+    const projectCards = document.querySelectorAll('.project-card');
+    projectCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-10px) scale(1.02)';
+            this.style.boxShadow = '0 20px 40px rgba(0,0,0,0.15)';
+        });
+        
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) scale(1)';
+            this.style.boxShadow = 'var(--shadow-medium)';
+        });
+    });
+    
+    // 添加霓虹灯效果到标题
+    const heroTitle = document.querySelector('.hero-title');
+    if (heroTitle) {
+        setInterval(() => {
+            heroTitle.classList.toggle('neon-text');
+        }, 3000);
+    }
+    
+    // 添加滚动动画
+    const animatedElements = document.querySelectorAll('.skill-category, .achievement-item, .timeline-item');
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('scroll-animate', 'show');
+            }
+        });
+    }, {
+        threshold: 0.1
+    });
+    
+    animatedElements.forEach(element => {
+        observer.observe(element);
+    });
+}
+
+// 创建波纹效果
+function createRipple(element, event) {
+    const ripple = document.createElement('span');
+    const rect = element.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const x = event.clientX - rect.left - size / 2;
+    const y = event.clientY - rect.top - size / 2;
+    
+    ripple.style.width = ripple.style.height = size + 'px';
+    ripple.style.left = x + 'px';
+    ripple.style.top = y + 'px';
+    ripple.classList.add('ripple');
+    
+    element.appendChild(ripple);
+    
+    setTimeout(() => {
+        ripple.remove();
+    }, 600);
+}
+
+// 粒子系统初始化
+function initializeParticleSystem() {
+    const particlesContainer = document.querySelector('.particles-container');
+    
+    if (particlesContainer) {
+        // 创建更多粒子
+        for (let i = 0; i < 20; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            // 随机属性
+            const size = Math.random() * 6 + 2;
+            const left = Math.random() * 100;
+            const delay = Math.random() * 20;
+            const duration = Math.random() * 30 + 20;
+            
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+            particle.style.left = left + '%';
+            particle.style.animationDelay = delay + 's';
+            particle.style.animationDuration = duration + 's';
+            particle.style.background = `rgba(102, 126, 234, ${Math.random() * 0.3 + 0.1})`;
+            
+            particlesContainer.appendChild(particle);
+        }
+    }
 }
 
 // 项目链接点击事件

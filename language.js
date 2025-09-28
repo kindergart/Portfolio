@@ -34,12 +34,12 @@ const translations = {
         
         // 项目
         projects_title: "我的项目",
-        project_1_title: "项目标题 1",
-        project_1_desc: "这是一个创新的Web应用，使用了最新的前端技术栈。",
-        project_2_title: "项目标题 2",
-        project_2_desc: "响应式设计的企业网站，注重用户体验和性能优化。",
-        project_3_title: "项目标题 3",
-        project_3_desc: "移动端应用开发，提供流畅的用户交互体验。",
+        project_1_title: "AI智能客服系统",
+        project_1_desc: "基于自然语言处理的智能客服系统，集成多轮对话管理和情感分析，提升客户服务效率80%。",
+        project_2_title: "分布式消息队列系统",
+        project_2_desc: "高性能分布式消息队列系统，支持百万级并发，实现消息可靠传输和负载均衡，延迟低于5ms。",
+        project_3_title: "实时数据分析平台",
+        project_3_desc: "基于Flink的实时数据处理平台，支持PB级数据实时分析，提供可视化监控和告警功能。",
         project_demo: "查看演示",
         project_source: "源代码",
         
@@ -121,12 +121,12 @@ const translations = {
         
         // Projects
         projects_title: "My Projects",
-        project_1_title: "Project Title 1",
-        project_1_desc: "This is an innovative web application using the latest frontend technology stack.",
-        project_2_title: "Project Title 2",
-        project_2_desc: "A responsively designed corporate website focusing on user experience and performance optimization.",
-        project_3_title: "Project Title 3",
-        project_3_desc: "Mobile application development providing smooth user interaction experience.",
+        project_1_title: "AI Intelligent Customer Service System",
+        project_1_desc: "An NLP-based intelligent customer service system with multi-turn dialogue management and sentiment analysis, improving customer service efficiency by 80%.",
+        project_2_title: "Distributed Message Queue System",
+        project_2_desc: "High-performance distributed message queue system supporting millions of concurrent connections, achieving reliable message transmission and load balancing with latency under 5ms.",
+        project_3_title: "Real-time Data Analytics Platform",
+        project_3_desc: "Flink-based real-time data processing platform supporting PB-level data analysis with visualization monitoring and alerting capabilities.",
         project_demo: "View Demo",
         project_source: "Source Code",
         

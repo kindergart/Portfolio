@@ -9,12 +9,28 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- 粒子背景 -->
+    <div class="particles-container">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+    
+    <!-- 鼠标跟随效果 -->
+    <div class="cursor-follower"></div>
+    
+    <!-- 消息提示 -->
+    <div class="success-message" id="successMessage"></div>
+    <div class="error-message" id="errorMessage"></div>
     <header class="header">
         <nav class="nav">
             <div class="nav-container">
-                <div class="logo">
-                    <h1>我的作品集</h1>
-                </div>
                 <ul class="nav-menu">
                     <li><a href="#home" class="nav-link">首页</a></li>
                     <li><a href="#about" class="nav-link">关于我</a></li>
@@ -108,11 +124,11 @@
                 <div class="projects-grid">
                     <div class="project-card">
                         <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=250&fit=crop" alt="项目1">
+                        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=250&fit=crop" alt="AI智能客服系统">
                     </div>
                         <div class="project-info">
-                            <h3>项目标题 1</h3>
-                            <p>这是一个创新的Web应用，使用了最新的前端技术栈。</p>
+                            <h3>AI智能客服系统</h3>
+                            <p>基于自然语言处理的智能客服系统，集成多轮对话管理和情感分析，提升客户服务效率80%。</p>
                             <div class="project-links">
                                 <a href="#" class="project-link">查看演示</a>
                                 <a href="#" class="project-link">源代码</a>
@@ -121,11 +137,11 @@
                     </div>
                     <div class="project-card">
                         <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop" alt="项目2">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop" alt="分布式消息队列系统">
                     </div>
                         <div class="project-info">
-                            <h3>项目标题 2</h3>
-                            <p>响应式设计的企业网站，注重用户体验和性能优化。</p>
+                            <h3>分布式消息队列系统</h3>
+                            <p>高性能分布式消息队列系统，支持百万级并发，实现消息可靠传输和负载均衡，延迟低于5ms。</p>
                             <div class="project-links">
                                 <a href="#" class="project-link">查看演示</a>
                                 <a href="#" class="project-link">源代码</a>
@@ -134,11 +150,11 @@
                     </div>
                     <div class="project-card">
                         <div class="project-image">
-                        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=250&fit=crop" alt="项目3">
+                        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=400&h=250&fit=crop" alt="实时数据分析平台">
                     </div>
                         <div class="project-info">
-                            <h3>项目标题 3</h3>
-                            <p>移动端应用开发，提供流畅的用户交互体验。</p>
+                            <h3>实时数据分析平台</h3>
+                            <p>基于Flink的实时数据处理平台，支持PB级数据实时分析，提供可视化监控和告警功能。</p>
                             <div class="project-links">
                                 <a href="#" class="project-link">查看演示</a>
                                 <a href="#" class="project-link">源代码</a>
@@ -203,11 +219,11 @@
                         <div class="contact-details">
                             <div class="contact-item">
                                 <strong>📧 邮箱：</strong>
-                                <span>kirineko@qq.com</span>
+                                <span>3202118542@qq.com</span>
                             </div>
                             <div class="contact-item">
                                 <strong>🌐 个人网页：</strong>
-                                <a href="https://kirineko.github.io" target="_blank" class="contact-link">https://kirineko.github.io</a>
+                                <a href="https://kindergart.github.io/Portfolio/" target="_blank" class="contact-link">https://kindergart.github.io/Portfolio/</a>
                             </div>
                             <div class="contact-item">
                                 <strong>📍 位置：</strong>
@@ -218,11 +234,11 @@
                         <div class="social-media">
                             <h4>社交媒体</h4>
                             <div class="social-links-horizontal">
-                                <a href="https://kirineko.github.io" target="_blank" class="social-btn">
+                                <a href="https://kindergart.github.io/Portfolio/" target="_blank" class="social-btn">
                                     <span class="social-icon">🌐</span>
                                     个人博客
                                 </a>
-                                <a href="mailto:kirineko@qq.com" class="social-btn">
+                                <a href="mailto:3202118542@qq.com" class="social-btn">
                                     <span class="social-icon">📧</span>
                                     邮箱联系
                                 </a>
