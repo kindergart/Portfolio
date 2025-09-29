@@ -12,6 +12,9 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeLanguageSwitcher();
     initializeInteractiveEffects();
     initializeParticleSystem();
+    initializeProfileInteractions();
+    initializeTimelineInteractions();
+    initializeAchievementInteractions();
 });
 
 // 导航功能
@@ -494,3 +497,376 @@ window.addEventListener('error', function(e) {
 // 导出函数供全局使用
 window.scrollToSection = scrollToSection;
 window.handleSubmit = handleSubmit;
+
+// 头像交互功能
+function initializeProfileInteractions() {
+    const profileImg = document.getElementById('profileImg');
+    const profileTooltip = document.getElementById('profileTooltip');
+    
+    if (!profileImg || !profileTooltip) return;
+    
+    // 鼠标悬停显示提示
+    profileImg.addEventListener('mouseenter', function() {
+        profileTooltip.classList.add('show');
+        profileTooltip.textContent = '点击我查看更多！';
+    });
+    
+    profileImg.addEventListener('mouseleave', function() {
+        profileTooltip.classList.remove('show');
+    });
+    
+    // 点击头像效果
+    let clickCount = 0;
+    profileImg.addEventListener('click', function() {
+        clickCount++;
+        
+        // 添加光环效果
+        this.classList.add('glow-effect');
+        setTimeout(() => {
+            this.classList.remove('glow-effect');
+        }, 2000);
+        
+        // 根据点击次数显示不同信息
+        const messages = [
+            '你好！我是专注于Python开发的工程师 👋',
+            '我热爱开源技术和分布式系统 💻',
+            '还喜欢动漫和Rust编程 🦀',
+            '期待与你交流技术心得！🚀'
+        ];
+        
+        profileTooltip.textContent = messages[clickCount % messages.length];
+        profileTooltip.classList.add('show');
+        
+        // 创建粒子效果
+        createProfileParticles(this);
+        
+        // 显示通知
+        showNotification(messages[clickCount % messages.length], 'success');
+    });
+}
+
+// 创建头像粒子效果
+function createProfileParticles(element) {
+    const rect = element.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    
+    for (let i = 0; i < 12; i++) {
+        const particle = document.createElement('div');
+        particle.style.position = 'fixed';
+        particle.style.width = '8px';
+        particle.style.height = '8px';
+        particle.style.background = `hsl(${Math.random() * 60 + 220}, 70%, 60%)`;
+        particle.style.borderRadius = '50%';
+        particle.style.left = centerX + 'px';
+        particle.style.top = centerY + 'px';
+        particle.style.pointerEvents = 'none';
+        particle.style.zIndex = '9999';
+        particle.style.transition = 'all 1s ease-out';
+        
+        document.body.appendChild(particle);
+        
+        // 动画
+        setTimeout(() => {
+            const angle = (i / 12) * Math.PI * 2;
+            const distance = 100 + Math.random() * 50;
+            particle.style.transform = `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px)`;
+            particle.style.opacity = '0';
+            particle.style.transform += ' scale(0)';
+        }, 10);
+        
+        // 清理
+        setTimeout(() => {
+            particle.remove();
+        }, 1000);
+    }
+}
+
+// 时间线交互功能
+function initializeTimelineInteractions() {
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    
+    timelineItems.forEach((item, index) => {
+        const content = item.querySelector('.timeline-content');
+        const details = item.querySelector('.timeline-details');
+        const date = item.querySelector('.timeline-date');
+        
+        if (!content || !details) return;
+        
+        // 点击展开详情
+        content.addEventListener('click', function() {
+            const isExpanded = details.classList.contains('show');
+            
+            // 关闭所有其他展开的详情
+            document.querySelectorAll('.timeline-details.show').forEach(detail => {
+                detail.classList.remove('show');
+            });
+            
+            // 切换当前详情
+            if (!isExpanded) {
+                details.classList.add('show');
+                showNotification('展开详细信息 📖', 'info');
+            }
+        });
+        
+        // 日期点击效果
+        date.addEventListener('click', function() {
+            // 创建波纹效果
+            createRipple(this, { clientX: this.offsetLeft + this.offsetWidth / 2, clientY: this.offsetTop + this.offsetHeight / 2 });
+            
+            // 添加脉冲动画
+            this.style.animation = 'none';
+            setTimeout(() => {
+                this.style.animation = 'pulse 0.6s ease';
+            }, 10);
+        });
+        
+        // 标签悬停效果
+        const tags = item.querySelectorAll('.timeline-tag');
+        tags.forEach(tag => {
+            tag.addEventListener('click', function(e) {
+                e.stopPropagation();
+                showNotification(`你点击了标签: ${this.textContent} 🏷️`, 'info');
+                
+                // 标签弹跳效果
+                this.style.transform = 'scale(1.2)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 200);
+            });
+        });
+    });
+    
+    // 时间线滚动动画
+    const timelineObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('show');
+                
+                // 添加延迟动画
+                const index = parseInt(entry.target.dataset.index) || 0;
+                entry.target.style.transitionDelay = `${index * 0.2}s`;
+            }
+        });
+    }, {
+        threshold: 0.3,
+        rootMargin: '0px 0px -50px 0px'
+    });
+    
+    timelineItems.forEach(item => {
+        timelineObserver.observe(item);
+    });
+}
+
+// 成就交互功能
+function initializeAchievementInteractions() {
+    const achievementItems = document.querySelectorAll('.achievement-item');
+    const modal = document.getElementById('achievementModal');
+    const closeModal = document.getElementById('closeModal');
+    
+    if (!modal || !closeModal) return;
+    
+    // 成就数据
+    const achievementData = {
+        graduate: {
+            icon: '🏆',
+            title: '清华大学优秀毕业生',
+            description: '以优异的成绩毕业于清华大学计算机科学与技术专业，获得学士学位。在校期间积极参与ACM编程竞赛，获得多项奖项。',
+            stats: {
+                'GPA': '3.9/4.0',
+                '排名': '前5%',
+                '奖项': '8项'
+            }
+        },
+        mvp: {
+            icon: '🎯',
+            title: '微软MVP',
+            description: '获得微软最有价值专家(MVP)认证，在Python开发和云计算领域做出突出贡献，积极参与技术社区分享。',
+            stats: {
+                '认证年份': '2022-2024',
+                '技术领域': 'Python/云原生',
+                '社区贡献': '50+文章'
+            }
+        },
+        huawei: {
+            icon: '🚀',
+            title: '华为开发者认证',
+            description: '获得华为云开发者专家认证，在分布式系统和云原生技术方面具有深厚的专业知识和实践经验。',
+            stats: {
+                '认证等级': '专家级',
+                '技术栈': '云原生/微服务',
+                '项目经验': '15+'
+            }
+        }
+    };
+    
+    achievementItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const achievement = this.dataset.achievement;
+            const data = achievementData[achievement];
+            
+            if (data) {
+                showAchievementModal(data);
+                
+                // 添加点击动画
+                this.classList.add('clicked');
+                setTimeout(() => {
+                    this.classList.remove('clicked');
+                }, 600);
+                
+                // 创建庆祝效果
+                createCelebrationEffect();
+            }
+        });
+        
+        // 悬停效果
+        item.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-8px) rotate(1deg) scale(1.02)';
+        });
+        
+        item.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0) rotate(0) scale(1)';
+        });
+    });
+    
+    // 关闭模态框
+    closeModal.addEventListener('click', function() {
+        modal.classList.remove('show');
+    });
+    
+    // 点击模态框外部关闭
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.classList.remove('show');
+        }
+    });
+    
+    // ESC键关闭模态框
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('show')) {
+            modal.classList.remove('show');
+        }
+    });
+}
+
+// 显示成就模态框
+function showAchievementModal(data) {
+    const modal = document.getElementById('achievementModal');
+    const modalIcon = document.getElementById('modalIcon');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalDescription = document.getElementById('modalDescription');
+    const modalStats = document.getElementById('modalStats');
+    
+    modalIcon.textContent = data.icon;
+    modalTitle.textContent = data.title;
+    modalDescription.textContent = data.description;
+    
+    // 清空并重新填充统计数据
+    modalStats.innerHTML = '';
+    Object.entries(data.stats).forEach(([label, value]) => {
+        const statDiv = document.createElement('div');
+        statDiv.className = 'achievement-stat';
+        statDiv.innerHTML = `
+            <span class="achievement-stat-number">${value}</span>
+            <span class="achievement-stat-label">${label}</span>
+        `;
+        modalStats.appendChild(statDiv);
+    });
+    
+    modal.classList.add('show');
+}
+
+// 创建庆祝效果
+function createCelebrationEffect() {
+    const colors = ['#667eea', '#764ba2', '#f093fb', '#f5576c', '#4facfe', '#00f2fe'];
+    
+    for (let i = 0; i < 20; i++) {
+        const confetti = document.createElement('div');
+        confetti.style.position = 'fixed';
+        confetti.style.width = '10px';
+        confetti.style.height = '10px';
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.left = Math.random() * 100 + '%';
+        confetti.style.top = '-10px';
+        confetti.style.pointerEvents = 'none';
+        confetti.style.zIndex = '9999';
+        confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+        confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+        confetti.style.transition = 'all 2s ease-out';
+        
+        document.body.appendChild(confetti);
+        
+        // 动画
+        setTimeout(() => {
+            confetti.style.top = '100%';
+            confetti.style.transform += ' rotate(720deg)';
+            confetti.style.opacity = '0';
+        }, 100);
+        
+        // 清理
+        setTimeout(() => {
+            confetti.remove();
+        }, 2000);
+    }
+}
+
+// 通知系统
+function showNotification(message, type = 'info') {
+    // 创建通知元素
+    const notification = document.createElement('div');
+    notification.className = `notification notification-${type}`;
+    notification.innerHTML = `
+        <div class="notification-content">
+            <span class="notification-icon">${getNotificationIcon(type)}</span>
+            <span class="notification-message">${message}</span>
+        </div>
+        <button class="notification-close">&times;</button>
+    `;
+    
+    // 添加到页面
+    document.body.appendChild(notification);
+    
+    // 显示动画
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 10);
+    
+    // 自动隐藏
+    const autoHide = setTimeout(() => {
+        hideNotification(notification);
+    }, 4000);
+    
+    // 关闭按钮
+    const closeBtn = notification.querySelector('.notification-close');
+    closeBtn.addEventListener('click', () => {
+        clearTimeout(autoHide);
+        hideNotification(notification);
+    });
+    
+    // 点击通知本身也可以关闭
+    notification.addEventListener('click', (e) => {
+        if (e.target === notification) {
+            clearTimeout(autoHide);
+            hideNotification(notification);
+        }
+    });
+}
+
+// 隐藏通知
+function hideNotification(notification) {
+    notification.classList.remove('show');
+    setTimeout(() => {
+        notification.remove();
+    }, 300);
+}
+
+// 获取通知图标
+function getNotificationIcon(type) {
+    const icons = {
+        success: '✅',
+        info: 'ℹ️',
+        warning: '⚠️',
+        error: '❌'
+    };
+    return icons[type] || 'ℹ️';
+}

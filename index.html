@@ -42,6 +42,11 @@
                      <button class="lang-btn active" data-lang="zh">中文</button>
                      <button class="lang-btn" data-lang="en">EN</button>
                  </div>
+                <div class="theme-toggle">
+                    <button class="theme-btn" id="themeToggle" title="切换主题">
+                        <span class="theme-icon">🌙</span>
+                    </button>
+                </div>
                 <div class="hamburger">
                     <span></span>
                     <span></span>
@@ -71,13 +76,23 @@
                         
                         <h3>个人成就</h3>
                         <div class="achievements">
-                            <div class="achievement-item">🏆 清华大学优秀毕业生</div>
-                            <div class="achievement-item">🎯 微软MVP</div>
-                            <div class="achievement-item">🚀 华为开发者认证</div>
+                            <div class="achievement-item" data-achievement="graduate">
+                                <div class="achievement-icon">🏆</div>
+                                <div class="achievement-title">清华大学优秀毕业生</div>
+                            </div>
+                            <div class="achievement-item" data-achievement="mvp">
+                                <div class="achievement-icon">🎯</div>
+                                <div class="achievement-title">微软MVP</div>
+                            </div>
+                            <div class="achievement-item" data-achievement="huawei">
+                                <div class="achievement-icon">🚀</div>
+                                <div class="achievement-title">华为开发者认证</div>
+                            </div>
                         </div>
                     </div>
                     <div class="about-image">
-                        <img src="https://kirineko.github.io/hita.png" alt="个人照片" class="profile-img">
+                        <img src="https://kirineko.github.io/hita.png" alt="个人照片" class="profile-img" id="profileImg">
+                        <div class="profile-tooltip" id="profileTooltip">点击我查看更多！</div>
                     </div>
                 </div>
                 
@@ -85,32 +100,64 @@
                 <div class="timeline-section">
                     <h3>专业经历</h3>
                     <div class="timeline">
-                        <div class="timeline-item">
+                        <div class="timeline-item" data-index="0">
                             <div class="timeline-date">2010-2014</div>
                             <div class="timeline-content">
                                 <h4>清华大学</h4>
                                 <p>计算机科学与技术专业，学士学位</p>
+                                <div class="timeline-details">
+                                    <p>主修课程：数据结构、算法分析、操作系统、计算机网络。参与ACM竞赛，获得多项编程比赛奖项。</p>
+                                    <div class="timeline-tags">
+                                        <span class="timeline-tag">数据结构</span>
+                                        <span class="timeline-tag">算法</span>
+                                        <span class="timeline-tag">ACM</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="timeline-item">
+                        <div class="timeline-item" data-index="1">
                             <div class="timeline-date">2014-2016</div>
                             <div class="timeline-content">
                                 <h4>斯坦福大学</h4>
                                 <p>计算机科学专业，硕士学位</p>
+                                <div class="timeline-details">
+                                    <p>研究方向：分布式系统与机器学习。参与多个开源项目，发表相关论文。</p>
+                                    <div class="timeline-tags">
+                                        <span class="timeline-tag">分布式系统</span>
+                                        <span class="timeline-tag">机器学习</span>
+                                        <span class="timeline-tag">开源项目</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="timeline-item">
+                        <div class="timeline-item" data-index="2">
                             <div class="timeline-date">2017-2020</div>
                             <div class="timeline-content">
                                 <h4>Google</h4>
                                 <p>软件工程师，负责分布式系统开发</p>
+                                <div class="timeline-details">
+                                    <p>参与Google Cloud Platform的核心服务开发，优化大规模数据处理系统性能。</p>
+                                    <div class="timeline-tags">
+                                        <span class="timeline-tag">Google Cloud</span>
+                                        <span class="timeline-tag">分布式系统</span>
+                                        <span class="timeline-tag">性能优化</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="timeline-item">
+                        <div class="timeline-item" data-index="3">
                             <div class="timeline-date">2021-2023</div>
                             <div class="timeline-content">
                                 <h4>OpenAI</h4>
                                 <p>软件工程师，参与AI基础设施构建</p>
+                                <div class="timeline-details">
+                                    <p>负责AI模型训练平台的基础设施搭建，支持大规模语言模型的训练与部署。</p>
+                                    <div class="timeline-tags">
+                                        <span class="timeline-tag">AI基础设施</span>
+                                        <span class="timeline-tag">机器学习</span>
+                                        <span class="timeline-tag">大模型</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -280,7 +327,19 @@
         </div>
     </footer>
 
+    <!-- 成就详情模态框 -->
+    <div class="achievement-modal" id="achievementModal">
+        <div class="achievement-modal-content">
+            <button class="achievement-modal-close" id="closeModal">&times;</button>
+            <div class="achievement-modal-icon" id="modalIcon"></div>
+            <h3 class="achievement-modal-title" id="modalTitle"></h3>
+            <p class="achievement-modal-description" id="modalDescription"></p>
+            <div class="achievement-modal-stats" id="modalStats"></div>
+        </div>
+    </div>
+
     <script src="language.js"></script>
+    <script src="theme.js"></script>
     <script src="main.js"></script>
 </body>
 </html>

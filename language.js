@@ -381,18 +381,15 @@ function updateLanguageSelector() {
     });
 }
 
-// 初始化语言选择器
+// 初始化语言选择器 - 只添加事件监听器，不再创建元素
 function initLanguageSelector() {
-    const langSelector = document.createElement('div');
-    langSelector.className = 'language-selector';
-    langSelector.innerHTML = `
-        <button class="lang-btn active" data-lang="zh" onclick="switchLanguage('zh')">中文</button>
-        <button class="lang-btn" data-lang="en" onclick="switchLanguage('en')">English</button>
-    `;
-    
-    // 添加到导航栏
-    const navContainer = document.querySelector('.nav-container');
-    navContainer.appendChild(langSelector);
+    // 为已存在的语言按钮添加事件监听器
+    const langButtons = document.querySelectorAll('.lang-btn');
+    langButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            switchLanguage(this.dataset.lang);
+        });
+    });
 }
 
 // 页面加载完成后初始化
